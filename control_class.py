@@ -47,7 +47,7 @@ class Control:
             input (x,y,t)
         """
         self.reset()
-        self.move_x, self.move_y, self.timing = x, y, t
+        self.move_x, self.move_y, self.timing = x, y, t * 0.001  # convert seconds to milliseconds
         self.stop = False
 
     def current(self, debug=False):
@@ -59,10 +59,12 @@ class Control:
         return self.move_x, self.move_y, self.timing
 
     def movement(self):
-        timing = self.timing * 0.001 # convert seconds to milliseconds
+        timing = self.timing
         Control.ghub_mouse(self.move_x, self.move_y) # move the mouse
         sleep(timing)  # sleep for t milliseconds
 
+    def movement_with_click(self):
+        ...
 
 if __name__ == "__main__":
     import keyboard
