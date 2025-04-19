@@ -1,3 +1,4 @@
+# Credit to StormCPH and SunOne on Github for parts of the Code
 from InputMethods.InputMethod import InputMethod
 import serial
 import serial.tools.list_ports
