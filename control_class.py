@@ -1,6 +1,6 @@
 from mouse_driver.MouseMove import mouse_move as ghub_mouse
 import win32api
-import time
+from time import sleep
 
 
 class Control:
@@ -23,6 +23,8 @@ class Control:
             self.check_status()
             if self.active and not self.stop:
                 self.movement()
+                continue
+            sleep(0.1)
 
     def check_status(self):
         """Checks if both mouse buttons are pressed"""
@@ -59,7 +61,7 @@ class Control:
     def movement(self):
         timing = self.timing * 0.001 # convert seconds to milliseconds
         ghub_mouse(self.move_x, self.move_y) # move the mouse
-        time.sleep(timing)  # sleep for t milliseconds
+        sleep(timing)  # sleep for t milliseconds
 
 
 if __name__ == "__main__":
