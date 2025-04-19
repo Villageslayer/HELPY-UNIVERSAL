@@ -1,11 +1,11 @@
-from mouse_driver.MouseMove import mouse_move as ghub_mouse
+from mouse_driver.InputMethods.InputMethodGFCK import InputMethodGFCK
 import win32api
 from time import sleep
 
 
 class Control:
     name = 'Control'  # used for logging
-
+    ghub_mouse = InputMethodGFCK().moveRelative
     def __init__(self):
         self.stop = False
         self.running = False
@@ -60,7 +60,7 @@ class Control:
 
     def movement(self):
         timing = self.timing * 0.001 # convert seconds to milliseconds
-        ghub_mouse(self.move_x, self.move_y) # move the mouse
+        Control.ghub_mouse(self.move_x, self.move_y) # move the mouse
         sleep(timing)  # sleep for t milliseconds
 
 
