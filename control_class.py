@@ -49,14 +49,14 @@ class Control(Thread):
     def reset(self):
         """"Stopping to update Values (x,y,t)"""
         self.stop = True
-        self.move_x, self.move_y, self.timing = 0, 0, 0
+        self.move_x, self.move_y, self.timing, self.move_click = 0, 0, 0, False
 
-    def update(self, x, y, t, move_click):
+    def update(self, x, y, t, move_click=False):
         """ Update Recoil Values
             input (x,y,t)
         """
         self.reset()
-        self.move_x, self.move_y, self.timing,self.move_click = x, y, (t * 0.001) , move_click # convert seconds to milliseconds
+        self.move_x, self.move_y, self.timing,self.move_click = x, y, (t * 0.001) , move_click
         self.stop = False
 
     def current(self, debug=False):
@@ -64,8 +64,8 @@ class Control(Thread):
         input printout True to print
         """
         if debug:
-            print(f'current values: {self.move_x, self.move_y, self.timing}')
-        return self.move_x, self.move_y, self.timing
+            print(f'current values: {self.move_x, self.move_y, self.timing, self.move_click}')
+        return self.move_x, self.move_y, self.timing, self.move_click
 
     def movement(self):
         if not self.stop:
