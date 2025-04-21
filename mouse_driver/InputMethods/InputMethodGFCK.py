@@ -14,6 +14,7 @@ class InputMethodGFCK(InputMethod):
 
   @override
   def down(self, button):
+    """Mouse Down"""
     self.dll.mouse_move(button, 0, 0, 0)
 
   @override
